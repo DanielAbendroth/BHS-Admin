@@ -1,0 +1,16 @@
+php_value default_charset utf-8
+
+ Options FollowSymLinks
+ Options -Indexes
+ DirectoryIndex index.php
+
+ RewriteEngine On
+
+ #Checks to see if the user is attempting to access a valid file,
+ #such as an image or css document, if this isn't true it sends the
+ #request to index.php
+ RewriteCond $1 !^(index\.php|assets|css|js|images|img|robots\.txt|favicon\.ico)
+
+ RewriteCond %{REQUEST_FILENAME} !-f
+ RewriteCond %{REQUEST_FILENAME} !-d
+ RewriteRule ^(.*)$ index.php?/$1 [L,QSA]

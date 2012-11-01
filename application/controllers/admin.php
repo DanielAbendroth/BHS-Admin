@@ -2,6 +2,7 @@
 
 class Admin extends CI_Controller {
 	
+	
 	public function index()
 	{
 		$data = array(
@@ -31,10 +32,29 @@ class Admin extends CI_Controller {
 	
 	public function etts()
 	{
-		$data = array(
-			'title' => 'ETTS',
-			'content' => 'etts'
-		);
+		if($this->uri->segment(2))
+		{
+			$option = $this->uri->segment(2);
+			if($option = 'phase')
+			{
+				$this->load->helper('form');
+				$phase = $this->uri->segment(3);
+				$data = array();
+				
+				//load modal
+				
+				//get data
+				$data['title'] = 'ETTS';
+				$data['content'] = 'etts/phase_'.$phase;
+			}
+			
+		} else {
+			$data = array(
+				'title' => 'ETTS',
+				'content' => 'etts/main'
+			);
+		}
+
 		$this->load->view('template', $data);
 	}
 	

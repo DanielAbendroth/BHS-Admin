@@ -26,12 +26,12 @@
 						<div class="sortable row-fluid">
 							<span class="well span3 top-block">
 								<div>Completed Tasks</div>
-								<div>8</div>
+								<div>5</div>
 							</span>
 			
 							<span class="well span3 top-block">
 								<div>Total Tasks</div>
-								<div>8</div>
+								<div>5</div>
 							</span>
 			
 							<span class="well span3 top-block">
@@ -146,5 +146,5 @@
 			</div><!--/row-->
     
 <?
-/* End of file etts.php */
-/* Location: ./application/views/etts.php */
+/* End of file main.php */
+/* Location: ./application/views/etts/main.php */

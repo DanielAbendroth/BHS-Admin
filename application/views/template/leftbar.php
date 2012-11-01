@@ -8,11 +8,11 @@
 			<div class="span2 main-menu-span">
 				<div class="well nav-collapse sidebar-nav">
 					<ul class="nav nav-tabs nav-stacked main-menu">
-						<li><a class="ajax-link" href="dashboard"><i class="icon-home"></i><span class="hidden-tablet"> Dashboard</span></a></li>
-						<li><a class="ajax-link" href="files"><i class="icon-folder-open"></i><span class="hidden-tablet"> File Manager</span></a></li>
-						<li><a class="ajax-link" href="employees"><i class="icon-user"></i><span class="hidden-tablet"> Employees</span></a></li>
-						<li><a class="ajax-link" href="etts"><i class="icon-inbox"></i><span class="hidden-tablet"> ETTS</span></a></li>
-						<li><a class="ajax-link" href="store"><i class="icon-tags"></i><span class="hidden-tablet"> Store</span></a></li>
+						<li><a class="ajax-link" href="<?=base_url(); ?>dashboard"><i class="icon-home"></i><span class="hidden-tablet"> Dashboard</span></a></li>
+						<li><a class="ajax-link" href="<?=base_url(); ?>files"><i class="icon-folder-open"></i><span class="hidden-tablet"> File Manager</span></a></li>
+						<li><a class="ajax-link" href="<?=base_url(); ?>employees"><i class="icon-user"></i><span class="hidden-tablet"> Employees</span></a></li>
+						<li><a class="ajax-link" href="<?=base_url(); ?>etts"><i class="icon-inbox"></i><span class="hidden-tablet"> ETTS</span></a></li>
+						<li><a class="ajax-link" href="<?=base_url(); ?>store"><i class="icon-tags"></i><span class="hidden-tablet"> Store</span></a></li>
 						
 					</ul>
 					

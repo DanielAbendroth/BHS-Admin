@@ -1,6 +1,6 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed'); ?>
 
-			<div>
+			<!--<div>
 				<ul class="breadcrumb">
 					<li>
 						<a href="/">Home</a><span class="divider">/</span>
@@ -9,7 +9,7 @@
 						<a href="#">ETTS</a>
 					</li>
 				</ul>
-			</div>
+			</div>-->
 			
 			<div class="row-fluid">
 				<div class="box span12">
@@ -51,7 +51,7 @@
 			<div class="row-fluid">
 				<div class="box span12">
 					<div class="box-header well" data-original-title>
-						<h2>Prior to Running Sessions Solo</h2>
+						<h2><a href="etts/phase/2">Prior to Running Sessions Solo</a></h2>
 						<div class="box-icon">
 							<a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-up"></i></a>
 						</div>
@@ -88,7 +88,7 @@
 			<div class="row-fluid">
 				<div class="box span12">
 					<div class="box-header well" data-original-title>
-						<h2>Running Sessions Solo</h2>
+						<h2><a href="etts/phase/3">Running Sessions Solo</a></h2>
 						<div class="box-icon">
 							<a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-up"></i></a>
 						</div>
@@ -125,7 +125,7 @@
 			<div class="row-fluid">
 				<div class="box span12">
 					<div class="box-header well" data-original-title>
-						<h2>Behavior Consultant</h2>
+						<h2><a href="etts/phase/4">Behavior Consultant</a></h2>
 						<div class="box-icon">
 							<a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-up"></i></a>
 						</div>

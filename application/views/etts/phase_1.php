@@ -1,84 +1,113 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed'); ?>
 	
-	<div class="box-header well" data-original-title="">
-		<h2>Prior to Attending Sessions</h2>
-	</div>
-	<div class="box-content">
-		<p>Before attending any sessions, client’s homes, or schools you need to have all of the training criteria below completed. This includes no ride alongs with other employees. The background check is usually the slowest so get started on the others while waiting.</p>
-	</div>
-	<div class="box-content">
-		<table class="table table-striped">  
-			  <tbody>
-				<tr>
-					<td>Background Check</td>
-					<td class="center">2012/01/01</td>
-					<td class="center"></td>
-					<td class="center"></td>
-					<td class="center">
-						<span class="label label-warning">Pending</span>
-					</td>
-					<td class="center">
-						<span class="label label-info">
-							<a href="#" style="color:white;">
-								<i class="icon-edit icon-white"></i>  
-								Edit                                            
-							</a>
-						</span>
-					</td>                                       
-				</tr>
-				<tr>
-					<td>Employment Contract</td>
-					<td class="center">2012/01/01</td>
-					<td class="center"></td>
-					<td class="center"></td>
-					<td class="center">
-						<span class="label label-success">Complete</span>
-					</td>
-					<td class="center">
-						<span class="label label-info">
-							<a href="#" style="color:white;">
-								<i class="icon-edit icon-white"></i>  
-								Edit                                            
-							</a>
-						</span>
-					</td>                                       
-				</tr>
-				<tr>
-					<td>Supervision for Licensure Agreement</td>
-					<td class="center">2012/01/01</td>
-					<td class="center"></td>
-					<td class="center"></td>
-					<td class="center">
-						<span class="label label-success">Complete</span>
-					</td>
-					<td class="center">
-						<span class="label label-info">
-							<a href="#" style="color:white;">
-								<i class="icon-edit icon-white"></i>  
-								Edit                                            
-							</a>
-						</span>
-					</td>                                     
-				</tr>
-				<tr>
-					<td>HIPPAA Online Training</td>
-					<td class="center">2012/01/01</td>
-					<td class="center"></td>
-					<td class="center"><?=form_upload('hippaa');?></td>
-					<td class="center">
-						<span class="label label">Incomplete</span>
-					</td>
-					<td class="center">
-						<span class="label label-info">
-							<a href="#" style="color:white;">
-								<i class="icon-edit icon-white"></i>  
-								Edit                                            
-							</a>
-						</span>
-					</td>                                       
-				</tr>                     
-			  </tbody>
-		 </table>
+	<style type="text/css">
+		//td:last-child {display: none}
+	</style>
+	
+	<div class="row-fluid">
+		<div class="box span10">
+			<div class="box-header well" data-original-title>
+				<h2>Prior to Attending Sessions</h2>
+			</div>
+			<div class="box-content">
+				Before attending any sessions, client’s homes, or schools you need to have all of the training criteria below completed. This includes no ride alongs with other employees. The background check is usually the slowest so get started on the others while waiting.
+			</div>
+		</div><!--/span-->
+		<div class="box span2">
+			<div class="box-header well" data-original-title>
+				<h2>Status</h2>
+			</div>
+			<div class="box-content">
+				<div class="center">
+					80%
+				</div>
+			</div>
+		</div><!--/span-->
+	</div><!--/row-->
+	
+	<!--End top row-->
+	
+	
+	<div class="row-fluid">
+		<div class="box span12">
+			<div class="box-content">
+				<table class="table table-striped">  
+				  <tbody>
+					<tr>
+						<td>Background Check</td>
+						<td class="center">2012/01/01</td>
+						<td class="center"></td>
+						<td class="center"></td>
+						<td class="center">
+							<span class="label label-warning">Pending</span>
+						</td>
+						<td class="center">
+							<span class="label label-info">
+								<a href="#" style="color:white;">
+									<i class="icon-edit icon-white"></i>  
+									Edit                                            
+								</a>
+							</span>
+						</td>                                       
+					</tr>
+					<tr>
+						<td>Employment Contract</td>
+						<td class="center">2012/01/01</td>
+						<td class="center"></td>
+						<td class="center"></td>
+						<td class="center">
+							<span class="label label-success">Complete</span>
+						</td>
+						<td class="center">
+							<span class="label label-info">
+								<a href="#" style="color:white;">
+									<i class="icon-edit icon-white"></i>  
+									Edit                                            
+								</a>
+							</span>
+						</td>                                       
+					</tr>
+					<tr>
+						<td>Supervision for Licensure Agreement</td>
+						<td class="center">2012/01/01</td>
+						<td class="center"></td>
+						<td class="center"></td>
+						<td class="center">
+							<span class="label label-success">Complete</span>
+						</td>
+						<td class="center">
+							<span class="label label-info">
+								<a href="#" style="color:white;">
+									<i class="icon-edit icon-white"></i>  
+									Edit                                            
+								</a>
+							</span>
+						</td>                                     
+					</tr>
+					<tr>
+						<td>HIPPAA Online Training</td>
+						<td class="center">2012/01/01</td>
+						<td class="center"></td>
+						<td class="center"><?=form_upload('hippaa');?></td>
+						<td class="center">
+							<span class="label label">Incomplete</span>
+						</td>
+						<td class="center">
+							<span class="label label-info">
+								<a href="#" style="color:white;">
+									<i class="icon-edit icon-white"></i>  
+									Edit                                            
+								</a>
+							</span>
+						</td>                                       
+					</tr>                   
+				  </tbody>
+			    </table>
+			</div>
+		</div><!--/span-->
+	</div><!--/row-->
+
+		
 	<div class="box-content">
 		<h3>Employee Manual Policies and Procedures</h3>
 		<table class="table table-striped">
@@ -312,5 +341,5 @@
 	</div>
 	
 	<?
-/* End of file phase.php */
-/* Location: ./application/views/etts/phase.php */
+/* End of file phase_1.php */
+/* Location: ./application/views/etts/phase_1.php */

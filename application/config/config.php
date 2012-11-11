@@ -14,8 +14,8 @@
 | path to your installation.
 |
 */
-$config['base_url']	= 'http://behsolutions/admin/';
-//$config['base_url']	= 'http://behsolutions.com/admin/testing/';
+//$config['base_url']	= 'http://behsolutions/admin/';
+$config['base_url']	= 'http://behsolutions.com/admin/testing/';
 
 /*
 |--------------------------------------------------------------------------

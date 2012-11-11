@@ -38,13 +38,12 @@
 |
 */
 
-$route['default_controller'] = "admin";
+$route['default_controller'] = "admin/etts";
 $route['404_override'] = '';
 $route['dashboard'] = 'admin';
 $route['files'] = 'admin/files';
 $route['employees'] = 'admin/employees';
 $route['etts'] = 'admin/etts';
 $route['etts/phase/(:num)'] = 'admin/etts/phase';
-
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

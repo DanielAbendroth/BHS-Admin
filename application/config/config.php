@@ -14,8 +14,8 @@
 | path to your installation.
 |
 */
-//$config['base_url']	= 'http://behsolutions/admin/';
-$config['base_url']	= 'http://behsolutions.com/admin/testing/';
+$config['base_url']	= 'http://behsolutions/admin/';
+//$config['base_url']	= 'http://behsolutions.com/admin/testing/';
 
 /*
 |--------------------------------------------------------------------------
@@ -225,7 +225,7 @@ $config['cache_path'] = '';
 | MUST set an encryption key.  See the user guide for info.
 |
 */
-$config['encryption_key'] = '';
+$config['encryption_key'] = 'helpingpeople45221';
 
 /*
 |--------------------------------------------------------------------------
@@ -245,13 +245,13 @@ $config['encryption_key'] = '';
 | 'sess_time_to_update'		= how many seconds between CI refreshing Session Information
 |
 */
-$config['sess_cookie_name']		= 'ci_session';
+$config['sess_cookie_name']		= 'bhs_session';
 $config['sess_expiration']		= 7200;
 $config['sess_expire_on_close']	= FALSE;
-$config['sess_encrypt_cookie']	= FALSE;
-$config['sess_use_database']	= FALSE;
-$config['sess_table_name']		= 'ci_sessions';
-$config['sess_match_ip']		= FALSE;
+$config['sess_encrypt_cookie']	= TRUE;
+$config['sess_use_database']	= TRUE;
+$config['sess_table_name']		= 'bhs_sessions';
+$config['sess_match_ip']		= TRUE;
 $config['sess_match_useragent']	= TRUE;
 $config['sess_time_to_update']	= 300;
 
@@ -342,7 +342,7 @@ $config['time_reference'] = 'local';
 | in your view files.  Options are TRUE or FALSE (boolean)
 |
 */
-$config['rewrite_short_tags'] = FALSE;
+$config['rewrite_short_tags'] = TRUE;
 
 
 /*

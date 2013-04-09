@@ -38,12 +38,29 @@
 |
 */
 
-$route['default_controller'] = "admin/etts";
+$route['default_controller'] = "admin/admin";
 $route['404_override'] = '';
 $route['dashboard'] = 'admin';
 $route['files'] = 'admin/files';
 $route['employees'] = 'admin/employees';
 $route['etts'] = 'admin/etts';
+$route['etts/'] = 'admin/etts';
 $route['etts/phase/(:num)'] = 'admin/etts/phase';
+$route['etts/phase/(:num)/(:num)'] = 'admin/etts/phase';
+$route['etts/phase/structure/(:num)'] = 'admin/etts/structure';
+$route['etts/phase/rundown/(:num)'] = 'admin/etts/rundown';
+$route['etts/create/section/(:num)'] = 'admin/etts/create_section';
+$route['etts/add/field/(:num)/(:num)'] = 'admin/etts/add_field';
+$route['etts/delete/section/(:num)'] = 'admin/etts/delete_section';
+$route['etts/delete/section/(:num)/confirm'] = 'admin/etts/delete_section';
+$route['etts/edit/field/(:num)/(:num)/(:num)'] = 'admin/etts/edit_field';
+$route['etts/add/task/(:num)/(:num)'] = 'admin/etts/add_task';
+$route['etts/approval/(:num)'] = 'admin/etts/approval';
+$route['etts/rejection/(:num)'] = 'admin/etts/rejection';
+$route['etts/phase_approval/(:num)/(:any)'] = 'admin/etts/phase_approval';
+$route['etts/phase_rejection/(:num)/(:any)'] = 'admin/etts/phase_rejection';
+$route['login'] = 'admin/session/login';
+$route['logout'] = 'admin/session/logout';
+
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

@@ -173,8 +173,7 @@
 							  <th>Target Behaviors</th>
 							  <th>Replacement Behaviors</th>
 							  <th>Outcome Graph</th>
-							  <th>Staff Treatment Intergrity Data</th>
-							  <th>Status</th>                                
+							  <th>Staff Treatment Intergrity Data</th>                           
 						  </tr>
 					  </thead>     
 					  <tbody>
@@ -186,9 +185,7 @@
 							<td class="center">Targets</td>
 							<td class="center">Replacements</td>
 							<td class="center"><?=form_upload('hippaa','manual.doc');?></td>
-							<td class="center"><?=form_upload('hippaa','manual.doc');?></td><td class="center">
-								<span class="label label-warning">Pending</span>
-							</td>                                   
+							<td class="center"><?=form_upload('hippaa','manual.doc');?></td>                                
 						</tr>
 						<tr>
 							<td>2</td>
@@ -198,9 +195,7 @@
 							<td class="center">Targets</td>
 							<td class="center">Replacements</td>
 							<td class="center"><?=form_upload('hippaa','manual.doc');?></td>
-							<td class="center"><?=form_upload('hippaa','manual.doc');?></td><td class="center">
-								<span class="label label-warning">Pending</span>
-							</td>                                  
+							<td class="center"><?=form_upload('hippaa','manual.doc');?></td>                                
 						</tr>
 						<tr>
 							<td colspan="9"><a href="#" class="btn btn-primary">Add Session</a></td>                                    
@@ -483,6 +478,56 @@
 				 </table> 
 			</div>
 		</div><!--/span-->
+	</div><!--/row-->	
+	
+	
+	
+	<!--
+		
+		Upload Program Book for VBMAPP 
+		
+	-->
+	
+	
+	<div class="row-fluid">
+		<div class="box span12">
+			<div class="box-header well" data-original-title>
+				<h2>Upload Program Book for VBMAPP</h2>
+				<a href="#" data-rel="popover" data-content="Uploading a Program book sends a request to the SBC for meeting to discuss the book."><span class="icon icon-color icon-info"></span></a>
+			</div>
+			<div class="box-content">
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th></th>
+							<th>Date</th>
+							<th>Client</th>
+							<th>
+								ZIP File
+								<a href="#" data-rel="popover" data-content="Only upload VBMAPP if other than one from above."><span class="icon icon-color icon-info"></span></a>
+							</th>
+						</tr>
+					</thead>     
+					<tbody>
+						<tr>
+							<td class="center">1</td>
+							<td class="center">2012/01/01</td>
+							<td class="center">Timmy O'Toole</td>
+							<td class="center"><?=form_upload()?></td>
+						</tr>
+						<tr>
+							<td class="center">2</td>
+							<td class="center">2012/01/01</td>
+							<td class="center">Timmy O'Toole</td>
+							<td class="center"><?=form_upload()?></td>
+						</tr>
+						<tr>
+							<td colspan="4"><a href="#" class="btn btn-primary">Add Program Book</a></td>                                    
+						</tr>
+					</tbody>
+				 </table> 
+			</div>
+		</div><!--/span-->
 	</div><!--/row-->
 	
 	
@@ -633,7 +678,30 @@
 				<h2>Assist in chairing team meeting</h2>
 			</div>
 			<div class="box-content">
-				<p>Not sure what should go here</p>
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th colspan="2"></th>
+							<th>Date</th>
+							<th>Client</th>
+							<th>Attendance</th>
+							<th>File</th>                     
+						</tr>
+					</thead>     
+					<tbody>
+						<tr>
+							<td></td>
+							<td class="center">1</td>
+							<td class="center">2012/01/01</td>
+							<td class="center">Toole</td>
+							<td class="center">15</td>
+							<td class="center"><?=form_upload();?></td>
+						</tr>
+						<tr>
+							<td colspan="9"><a href="#" class="btn btn-primary">Add Training Session</a></td>                                    
+						</tr>
+					</tbody>
+				 </table> 
 			</div>
 		</div><!--/span-->
 	</div><!--/row-->	

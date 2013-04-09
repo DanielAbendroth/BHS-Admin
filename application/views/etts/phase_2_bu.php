@@ -4,13 +4,12 @@
 	<div class="row-fluid">
 		<div class="box span10">
 			<div class="box-header well" data-original-title>
-				<h2>Running Sessions Solo</h2>
+				<h2>Prior to Running Sessions Solo</h2>
 			</div>
 			<div class="box-content">
-				You now can run sessions solo but must complete the below within 6 months of being approved to run sessions solo.
+				You can ride along and begin training with kids under direct observation by  a Consultant or Behavior Assistant Trained in Training Skills.
 			</div>
 		</div><!--/span-->
-		
 		<div class="box span2">
 			<div class="box-header well" data-original-title>
 				<h2>Status</h2>
@@ -30,7 +29,56 @@
 			<div class="box-header well" data-original-title>
 				<h2>
 					Basic Therapy Skills
-					<span class="label label">Incomplete</span>
+					<a href="#" data-rel="popover" data-content="At least one done by a Trained Trainer."><span class="icon icon-color icon-info"></span></a>
+					<span class="label label-success">Complete</span>
+				</h2>
+			</div>
+		<div class="box-content">
+			<table class="table table-striped">
+				  <thead>
+					  <tr>
+						  <th>Trial</th>
+					  	  <th>Score</th>
+						  <th>Date</th>
+						  <th>Trainer Name</th>
+						  <th>Client Initials</th>                                          
+					  </tr>
+				  </thead>     
+				  <tbody>
+					<tr>
+						<td class="center">1</td>
+						<td class="center">90%</td>
+						<td class="center">2012/01/01</td>
+						<td class="center">John Trainer</td>
+						<td class="center">JK</td>                                     
+					</tr>
+					<tr>
+						<td class="center">2</td>
+						<td class="center">90%</td>
+						<td class="center">2012/01/01</td>
+						<td class="center">John Trainer</td>
+						<td class="center">JK</td>                                     
+					</tr>
+					<tr>
+						<td class="center">3</td>
+						<td class="center">90%</td>
+						<td class="center">2012/01/01</td>
+						<td class="center">Sally Trainer</td>
+						<td class="center">PL</td>                                     
+					</tr>
+					<tr>
+						<td class="center" colspan="5"><button type="submit" class="btn btn-primary">Add Trial</button></td>
+					</tr>
+			 </table>
+		</div><!--/span-->
+	</div><!--/row-->
+	
+	<div class="row-fluid">
+		<div class="box span12">
+			<div class="box-header well" data-original-title>
+				<h2>
+					Therapy Visit Checklist
+					<span class="label label-success">Complete</span>
 				</h2>
 			</div>
 		<div class="box-content">
@@ -71,23 +119,17 @@
 						<td class="center"><a href="#">file.doc</a></td>                                     
 					</tr>
 					<tr>
-						<td class="center"><button type="submit" class="btn btn-primary">Add Trial</button></td>
-						<td class="center"></td>
-						<td class="center"></td>
-						<td class="center"></td>
-						<td class="center"></td>
-						<td class="center"></td>                                      
+						<td class="center" colspan="6"><button type="submit" class="btn btn-primary">Add Trial</button></td>
 					</tr>
-			</table>
+			 </table>
 		</div><!--/span-->
 	</div><!--/row-->
 	
-		
 	<div class="row-fluid">
 		<div class="box span12">
 			<div class="box-header well" data-original-title>
 				<h2>
-					10 hrs DDRB or Behavioral Assessment and Management Strategies
+					6 hr Discrete Trial and Behavior Assistant Training
 					<span class="label label-success">Complete</span>
 				</h2>
 			</div>
@@ -95,78 +137,25 @@
 			<table class="table table-striped">
 				  <thead>
 					  <tr>
+					  	  <th>Title</th>
 						  <th>Date</th>
 						  <th>Trainer Name</th>
-						  <th>Employee Initials</th>
-						  <th>Status</th>                                     
+						  <th>Employee Initials</th>                                        
 					  </tr>
 				  </thead>     
 				  <tbody>
 					<tr>
+						<td class="center">Ethics for Behavior Assistants</td>
 						<td class="center">2012/01/01</td>
 						<td class="center">John Trainer</td>
-						<td class="center">JK</td>
-						<td class="center">
-							<span class="label label-success">Approved</span>
-						</td>                                    
+						<td class="center">JK</td>                                    
+					</tr>
+					<tr>
+						<td class="center" colspan="4"><button type="submit" class="btn btn-primary">Add Workshop</button></td>
 					</tr>
 			 </table>
 		</div><!--/span-->
 	</div><!--/row-->
-	
-		 
-	<div class="row-fluid">
-		<div class="box span12">
-			<div class="box-header well" data-original-title>
-				<h2>Training Trainer Skills</h2>
-			</div>
-		<div class="box-content">
-			 <table class="table table-striped">
-				  <thead>
-					  <tr>
-						  <th>Date</th>
-						  <th>Employee</th>
-						  <th>Skill Trained</th>
-						  <th>Score</th> 
-						  <th>Trainer</th>
-						  <th>Approval</th>                                    
-					  </tr>
-				  </thead>     
-				  <tbody>
-					<tr>
-						<td class="center">2012/01/01</td>
-						<td class="center">Jeff Employee</td>
-						<td class="center">Bowstaff Skills</td>
-						<td class="center">100%</td>
-						<td class="center">John Trainer</td>
-						<td class="center">
-							<span class="label label-success">Approved</span>
-						</td>                                    
-					</tr>
-					<tr>
-						<td class="center">2012/01/01</td>
-						<td class="center">Jeff Employee</td>
-						<td class="center">Bowstaff Skills</td>
-						<td class="center">100%</td>
-						<td class="center">John Trainer</td>
-						<td class="center">
-							<span class="label label-success">Approved</span>
-						</td>                                    
-					</tr>
-					<tr>
-						<td class="center">2012/01/01</td>
-						<td class="center">Jeff Employee</td>
-						<td class="center">Bowstaff Skills</td>
-						<td class="center">100%</td>
-						<td class="center">John Trainer</td>
-						<td class="center">
-							<span class="label label-success">Approved</span>
-						</td>                                    
-					</tr>
-			 </table>
-		</div><!--/span-->
-	</div><!--/row-->
-
 	
 	<?
 /* End of file phase_2.php */

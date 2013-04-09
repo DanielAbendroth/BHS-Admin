@@ -1,9 +1,4 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed'); ?>
-	
-	<style type="text/css">
-		//td:last-child {display: none}
-	</style>
-	
 	<div class="row-fluid">
 		<div class="box span10">
 			<div class="box-header well" data-original-title>
@@ -19,7 +14,7 @@
 			</div>
 			<div class="box-content">
 				<div class="center">
-					80%
+					<?=$phase1['top_status']?>
 				</div>
 			</div>
 		</div><!--/span-->
@@ -35,71 +30,32 @@
 				  <tbody>
 					<tr>
 						<td>Background Check</td>
-						<td class="center">2012/01/01</td>
-						<td class="center"></td>
-						<td class="center"></td>
+						<td class="center" colspan="3"><?=$background_date;?></td>
 						<td class="center">
-							<span class="label label-warning">Pending</span>
-						</td>
-						<td class="center">
-							<span class="label label-info">
-								<a href="#" style="color:white;">
-									<i class="icon-edit icon-white"></i>  
-									Edit                                            
-								</a>
-							</span>
-						</td>                                       
+							<span class="label <?=$background_label;?>"><?=$background_status?></span>
+						</td>                                      
 					</tr>
 					<tr>
 						<td>Employment Contract</td>
-						<td class="center">2012/01/01</td>
-						<td class="center"></td>
-						<td class="center"></td>
+						<td class="center" colspan="3"><?=$contract_date;?></td>
 						<td class="center">
-							<span class="label label-success">Complete</span>
-						</td>
-						<td class="center">
-							<span class="label label-info">
-								<a href="#" style="color:white;">
-									<i class="icon-edit icon-white"></i>  
-									Edit                                            
-								</a>
-							</span>
-						</td>                                       
+							<span class="label <?=$contract_label;?>"><?=$contract_status?></span>
+						</td>                                      
 					</tr>
 					<tr>
 						<td>Supervision for Licensure Agreement</td>
-						<td class="center">2012/01/01</td>
-						<td class="center"></td>
-						<td class="center"></td>
+						<td class="center" colspan="3"><?=$supervision_date;?></td>
 						<td class="center">
-							<span class="label label-success">Complete</span>
-						</td>
-						<td class="center">
-							<span class="label label-info">
-								<a href="#" style="color:white;">
-									<i class="icon-edit icon-white"></i>  
-									Edit                                            
-								</a>
-							</span>
+							<span class="label <?=$supervision_label;?>"><?=$supervision_status?></span>
 						</td>                                     
 					</tr>
 					<tr>
 						<td>HIPPAA Online Training</td>
-						<td class="center">2012/01/01</td>
-						<td class="center"></td>
-						<td class="center"><?=form_upload('hippaa');?></td>
+						<td class="center" colspan="2"><?=$hippaa_date;?></td>
+						<td class="center"><a href="<?=base_url();?>admin/etts/download_file/hippaa/<?=$hippaa_file?>/1"><?=$hippaa_link?></a></td>
 						<td class="center">
-							<span class="label label">Incomplete</span>
-						</td>
-						<td class="center">
-							<span class="label label-info">
-								<a href="#" style="color:white;">
-									<i class="icon-edit icon-white"></i>  
-									Edit                                            
-								</a>
-							</span>
-						</td>                                       
+							<span class="label <?=$hippaa_label;?>"><?=$hippaa_status?></span>
+						</td>                                      
 					</tr>                   
 				  </tbody>
 			    </table>
@@ -116,233 +72,144 @@
 			<table class="table table-striped">
 				  <thead>
 					  <tr>
-						  <th>Task<Completed</th>
+						  <th>Task</th>
 						  <th>Date</th>
 						  <th>Trainer Name</th>
 						  <th>Employee Initials</th>
+						  <?if((!$manual_trainer) | (!$manual_initials)){ echo '<th></th>';}?>
 						  <th>Status</th>                                          
 					  </tr>
 				  </thead>     
 				  <tbody>
+			  	<?
+			  		$manual = manual();
+					$i = 0;
+					foreach ($manual as $item):
+				?>
 					<tr>
-						<td>Core Assurances</td>
-						<td class="center">2012/01/01</td>
-						<td class="center">John Trainer</td>
-						<td class="center">SD</td>
+						<td><?=$item?></td>
+						<td class="center"><?=$manual_date?></td>
+						<?if((!$manual_trainer) | (!$manual_initials) && ($i<1) && (!$sbc)){
+							echo form_open(base_url().'admin/etts/update_manual');
+							echo form_hidden('submitted',TRUE);
+						}?>
+						<?if ((!$manual_trainer) && ($i<1) && (!$sbc)):?>
+							<td class="center"><?=manual_trainers()?>
+						<?else:?>
+							<td class="center"><?=$manual_trainer?></td>
+						<?endif?>
 						<td class="center">
-							<span class="label label-success">Complete</span>
-						</td> 
-						<td class="center">
-							<span class="label label-info">
-								<a href="#" style="color:white;">
-									<i class="icon-edit icon-white"></i>  
-									Edit                                            
-								</a>
-							</span>
-						</td>                                      
-					</tr>
-					<tr>
-						<td>Sexual Abuse</td>
-						<td class="center">2012/01/01</td>
-						<td class="center">John Trainer</td>
-						<td class="center">SD</td>
-						<td class="center">
-							<span class="label label-success">Complete</span>
+						<?if((!$manual_initials) && ($i<1) && (!$sbc)){
+							echo '<input type="text" name="initials" maxlength="2" placeholder="Your Initials"  />';
+							} else { echo $manual_initials;
+							}?>
 						</td>
+						<?if((!$manual_trainer) | (!$manual_initials) && ($i<1) && (!$sbc)){?>
+							<td class="center"><button type="submit" class="btn btn-primary">Save</button></td></form>
+							<?} elseif((!$manual_trainer) | (!$manual_initials)) {
+								echo '<td></td>';
+							}?>
 						<td class="center">
-							<span class="label label-info">
-								<a href="#" style="color:white;">
-									<i class="icon-edit icon-white"></i>  
-									Edit                                            
-								</a>
-							</span>
+							<span class="label <?=$manual_label?>"><?=$manual_status?></span>
 						</td>                                      
 					</tr>
-					<tr>
-						<td>Technology Use</td>
-						<td class="center">2012/01/01</td>
-						<td class="center">John Trainer</td>
-						<td class="center">SD</td>
-						<td class="center">
-							<span class="label label-success">Complete</span>
-						</td>
-						<td class="center">
-							<span class="label label-info">
-								<a href="#" style="color:white;">
-									<i class="icon-edit icon-white"></i>  
-									Edit                                            
-								</a>
-							</span>
-						</td>                                      
-					</tr>
-					<tr>
-						<td>Office Use</td>
-						<td class="center">2012/01/01</td>
-						<td class="center">John Trainer</td>
-						<td class="center">SD</td>
-						<td class="center">
-							<span class="label label-success">Complete</span>
-						</td>
-						<td class="center">
-							<span class="label label-info">
-								<a href="#" style="color:white;">
-									<i class="icon-edit icon-white"></i>  
-									Edit                                            
-								</a>
-							</span>
-						</td>                                      
-					</tr>
-					<tr>
-						<td>Individual Choice</td>
-						<td class="center">2012/01/01</td>
-						<td class="center">John Trainer</td>
-						<td class="center">SD</td>
-						<td class="center">
-							<span class="label label-success">Complete</span>
-						</td>
-						<td class="center">
-							<span class="label label-info">
-								<a href="#" style="color:white;">
-									<i class="icon-edit icon-white"></i>  
-									Edit                                            
-								</a>
-							</span>
-						</td>                                      
-					</tr>
-					<tr>
-						<td>Individual Rights</td>
-						<td class="center">2012/01/01</td>
-						<td class="center">John Trainer</td>
-						<td class="center">SD</td>
-						<td class="center">
-							<span class="label label-success">Complete</span>
-						</td>
-						<td class="center">
-							<span class="label label-info">
-								<a href="#" style="color:white;">
-									<i class="icon-edit icon-white"></i>  
-									Edit                                            
-								</a>
-							</span>
-						</td>                                      
-					</tr>
-					<tr>
-						<td>Health, Safety and Well	</td>
-						<td class="center">2012/01/01</td>
-						<td class="center">John Trainer</td>
-						<td class="center">SD</td>
-						<td class="center">
-							<span class="label label-success">Complete</span>
-						</td>
-						<td class="center">
-							<span class="label label-info">
-								<a href="#" style="color:white;">
-									<i class="icon-edit icon-white"></i>  
-									Edit                                            
-								</a>
-							</span>
-						</td>                                      
-					</tr>
-					<tr>
-						<td>Abuse and Neglect</td>
-						<td class="center">2012/01/01</td>
-						<td class="center">John Trainer</td>
-						<td class="center">SD</td>
-						<td class="center">
-							<span class="label label-success">Complete</span>
-						</td>
-						<td class="center">
-							<span class="label label-info">
-								<a href="#" style="color:white;">
-									<i class="icon-edit icon-white"></i>  
-									Edit                                            
-								</a>
-							</span>
-						</td>                                      
-					</tr>
-					<tr>
-						<td>Consumer Grievance</td>
-						<td class="center">2012/01/01</td>
-						<td class="center">John Trainer</td>
-						<td class="center">SD</td>
-						<td class="center">
-							<span class="label label-success">Complete</span>
-						</td>
-						<td class="center">
-							<span class="label label-info">
-								<a href="#" style="color:white;">
-									<i class="icon-edit icon-white"></i>  
-									Edit                                            
-								</a>
-							</span>
-						</td>                                      
-					</tr>
-					<tr>
-						<td>Behavior Support Plans</td>
-						<td class="center">2012/01/01</td>
-						<td class="center">John Trainer</td>
-						<td class="center">SD</td>
-						<td class="center">
-							<span class="label label-success">Complete</span>
-						</td>
-						<td class="center">
-							<span class="label label-info">
-								<a href="#" style="color:white;">
-									<i class="icon-edit icon-white"></i>  
-									Edit                                            
-								</a>
-							</span>
-						</td>                                      
-					</tr>
-					<tr>
-						<td class="center">Self-Administ</td>
-						<td class="center">2012/01/01</td>
-						<td class="center">John Trainer</td>
-						<td class="center">SD</td>
-						<td class="center">
-							<span class="label label-success">Complete</span>
-						</td>
-						<td class="center">
-							<span class="label label-info">
-								<a href="#" style="color:white;">
-									<i class="icon-edit icon-white"></i>  
-									Edit                                            
-								</a>
-							</span>
-						</td>                                      
-					</tr>
-					<tr>
-						<td>Documentation Reqs</td>
-						<td class="center">2012/01/01</td>
-						<td class="center">John Trainer</td>
-						<td class="center">SD</td>
-						<td class="center">
-							<span class="label label-success">Complete</span>
-						</td>
-						<td class="center">
-							<span class="label label-info">
-								<a href="#" style="color:white;">
-									<i class="icon-edit icon-white"></i>  
-									Edit                                            
-								</a>
-							</span>
-						</td>                                      
-					</tr>
+				<?	$i++;
+				endforeach; ?>
+				<?if($manual_date == ''):?>
+					<?if(!$sbc):?>
 					<tr>
 						<td>Signature Page</td>
-						<td class="center">2012/01/01</td>
-						<td class="center"><?=form_upload('hippaa','manual.doc');?></td>
 						<td class="center"></td>
+						<td class="center"><form action="<?=base_url()?>admin/etts/do_upload" method="post" enctype="multipart/form-data""><?=form_upload('userfile');?><?=form_hidden('sig_page',TRUE);?><button type="submit" class="btn btn-primary">Save</button></form></td>
+						<td class="center"></td>
+						<?if(!$manual_trainer | !$manual_initials){ echo '<td></td>';}?>
 						<td class="center">
-							<span class="label label-success">Complete</span>
+							<span class="label">Incomplete</span>
 						</td>
-						<td class="center"></td>                                      
 					</tr>
+					<?endif?>
+				<?else:?>
+					<tr>
+						<td>Signature Page</td>
+						<td class="center"><?=$manual_date?></td>
+						<td class="center" colspan="2"><a href="<?=base_url();?>admin/etts/download_file/signature/<?=$manual_sig?>/1">Download Signature Page</td>
+						<?if(!$manual_trainer | !$manual_initials){ echo '<td></td>';}?>
+						<td class="center">
+							<span class="label <?=$manual_label?>"><?=$manual_status?></span>
+						</td>
+					</tr>
+				<?endif?>
 				</tbody>
 			 </table>
 		</div><!--/span-->
 	</div><!--/row-->
-	
+	<?
+	if(isset($sections)) {
+		foreach ($sections as $section): ?>
+			<div class="row-fluid">
+				<div class="box span12">
+					<div class="box-header well" data-original-title>
+						<h2>
+							<?=$section['title']?>
+							<?if(isset($section['data'])):?>
+								<?if(count($section['data']) >= $section['minimum']):?>
+									<span class="label label-success">Complete</span>
+								<?else:?>
+									<span class="label label">Incomplete</span>
+								<?endif?>
+							<?else:?>
+								<span class="label label">Incomplete</span>
+							<?endif?>
+							
+						</h2>
+					</div>
+					<div class="box-content">
+						<?if($section['note']):?>
+							<p><?=$section['note']?></p>
+						<?endif?>
+						<table class="table table-striped">
+							<thead>
+								<tr>
+									<th colspan="2"></th>
+		
+								<?foreach ($section['options'] as $key => $option):?>
+									<th><?=$option?></th>
+								<?endforeach?>
+								</tr>
+							</thead>     
+							<tbody>
+							<?if(isset($section['data'])):?>
+								<?if(is_array($section['data'])):
+									$i = 1;
+									foreach ($section['data'] as $task):
+										$id = array_pop($task);
+										?>
+										<tr>
+											<td class="center"><?=$i?></td>
+											<?foreach ($task as $value):
+												$list = explode('.', $value);
+												if(isset($list[1])) {
+													if($list[1] == 'doc' | 'pdf' | 'docx') {
+														$value = '<a href="'.base_url().'admin/etts/download_file/phases/'.$value.'/'.$this->uri->segment(3).'">Download File</a>';
+													}
+												}
+											?>
+												<td class="center"><?=$value?></td>
+											<?endforeach?>                                  
+										</tr>
+										<?$i++?>
+									<?endforeach?>
+								<?endif?>
+							<?endif?>
+							<tr>
+								<td class="center" colspan="20"><a href="<?=base_url()?>etts/add/task/<?=$this->uri->segment(3)?>/<?=$section['id']?>" class="btn btn-primary">Add</a></td>
+							</tr>
+						</table>
+					</div>
+				</div><!--/span-->
+			</div><!--/row-->
+			<?endforeach?>
+			<? } ?>
 	<?
 /* End of file phase_1.php */
 /* Location: ./application/views/etts/phase_1.php */

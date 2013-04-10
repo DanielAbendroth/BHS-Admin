@@ -109,6 +109,53 @@ if ( ! function_exists('sbc'))
 		return $data;
 	}
 }
+if ( ! function_exists('handle_position')) {
+	function handle_position($position)
+	{
+		switch ($position) {
+			case '1':
+				$position = 'Behavior Assistant';
+				break;
+				
+			case '2':
+				$position = 'Office Aid';
+				break;
+				
+			case '3':
+				$position = 'Behavior Assistant/Office Aid';
+				break;
+				
+			case '4':
+				$position = 'Consultant';
+				break;
+				
+			case '5':
+				$position = 'Senior Behavior Consultant';
+				break;
+				
+			case '6':
+				$position = 'Vice President/Consultant';
+				break;
+			
+			case '7':
+				$position = 'President/Consultant';
+				break;
+				
+			case '9':
+				$position = 'Consultant/Office Aid';
+				break;
+		}
+		return $position;
+	}
+}
+
+if ( ! function_exists('handle_phone')) {
+	function handle_phone($phone)
+	{
+		$phone = '('.substr($phone,0,3).') '.substr($phone,2,3).'-'.substr($phone,5,4);
+		return $phone;
+	}
+}
 
 /* End of file MY_bhs_array_helper.php */
 /* Location: ./application/helpers/MY_bhs_array_helper.php */

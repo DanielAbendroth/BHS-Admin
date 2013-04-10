@@ -17,3 +17,5 @@ class Files extends CI_Controller {
 	}	   
 	   
 }
+/* End of file files.php */
+/* Location: ./application/controllers/files.php */

@@ -25,11 +25,11 @@ if ( ! function_exists('nav_generate'))
 		 * 2 = office aid
 		 * 3 = assistant and office aid
 		 * 4 = consultant
-		 * 5 = SBC
-		 * 6 = Vice President
-		 * 7 = President
-		 * 8 = admin
-		 * 9 = cosultant and office aid
+		 * 5 = cosultant and office aid
+		 * 6 = SBC
+		 * 7 = Vice President
+		 * 8 = President
+		 * 9 = admin
 		 */
 		$pages = array();
 		$pages[] = array(
@@ -41,13 +41,13 @@ if ( ! function_exists('nav_generate'))
 			'uri'	=> base_url().'files',
 			'icon'	=> 'icon-folder-open',
 			'title'	=> 'File Manager'
-		);
+		);*/
 		$pages[] = array(
 			'uri'	=> base_url().'employees',
 			'icon'	=> 'icon-user',
 			'title'	=> 'Employees'
 		);
-		if($position >= 6) {
+		/*if($position >= 6) {
 			$pages[] = array(
 				'uri'	=> base_url().'store',
 				'icon'	=> 'icon-tags',
@@ -99,7 +99,7 @@ if ( ! function_exists('sbc'))
 {
 	function sbc()
 	{
-		$query = 'SELECT first_name, last_name, email FROM employees WHERE position = 5 LIMIT 1';
+		$query = 'SELECT first_name, last_name, email FROM employees WHERE position = 6 LIMIT 1';
 		$result = mysql_query($query);
 		$data = array();
 		while($row = mysql_fetch_array($result)) {
@@ -113,6 +113,10 @@ if ( ! function_exists('handle_position')) {
 	function handle_position($position)
 	{
 		switch ($position) {
+			case '0':
+				$position = 'Web Developer';
+				break;
+				
 			case '1':
 				$position = 'Behavior Assistant';
 				break;
@@ -122,27 +126,28 @@ if ( ! function_exists('handle_position')) {
 				break;
 				
 			case '3':
-				$position = 'Behavior Assistant/Office Aid';
+				$position = 'Behavior Assistant / Office Aid';
 				break;
 				
 			case '4':
 				$position = 'Consultant';
 				break;
 				
+				
 			case '5':
-				$position = 'Senior Behavior Consultant';
+				$position = 'Consultant / Office Aid';
 				break;
 				
 			case '6':
-				$position = 'Vice President/Consultant';
-				break;
-			
-			case '7':
-				$position = 'President/Consultant';
+				$position = 'Senior Behavior Consultant';
 				break;
 				
-			case '9':
-				$position = 'Consultant/Office Aid';
+			case '7':
+				$position = 'Vice President / Consultant';
+				break;
+			
+			case '8':
+				$position = 'President / Consultant';
 				break;
 		}
 		return $position;
@@ -157,5 +162,31 @@ if ( ! function_exists('handle_phone')) {
 	}
 }
 
+if ( ! function_exists('handle_status')) {
+	function handle_status($status)
+	{
+		if($status) {
+			$status = 'Active';
+		} else {
+			$status = 'Non-Active';
+		}
+		return $status;
+	}
+}
+
+if ( ! function_exists('is_exempt')) {
+	function is_exempt($task, $employee)
+	{
+		$dbc = mysqli_connect("localhost", "root", "mysql", "admin");
+		$query = "SELECT * FROM `exemption` WHERE `task` =$task AND `employee` =$employee";
+		$result = mysqli_query($dbc,$query);
+		mysqli_num_rows($result);
+		if(mysqli_num_rows($result) > 0) {
+			return TRUE;
+		} else {
+			return FALSE;
+		}
+	}
+}
 /* End of file MY_bhs_array_helper.php */
 /* Location: ./application/helpers/MY_bhs_array_helper.php */

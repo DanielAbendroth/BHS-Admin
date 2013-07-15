@@ -57,6 +57,23 @@ class Phase_model extends CI_Model {
 		$this->db->where('phase',$phase);
 		$sections = $this->db->get('sections');
 		$total += $sections->num_rows;
+		//remove exemption
+		$this->db->select('id');
+		$this->db->where('phase',$phase);
+		$section = $this->db->get('sections');
+		$i = 0;
+
+		foreach ($section->result() as $value) {
+			$this->db->where('task', $value->id);
+			$this->db->where('employee', $employee);
+			$this->db->where('phase', $phase);
+			$exempt = $this->db->get('exemption');
+			
+			if($exempt->num_rows() > 0) {
+				$i++;
+			}
+		}
+		$total -= $i;
 		//check to see if the employee has completed them
 		if($sections->num_rows != 0) {
 			$this->db->select('id');
@@ -168,6 +185,28 @@ class Phase_model extends CI_Model {
 				foreach ($names->result() as $row) {
 					$data[$id] = $row->first_name;
 				}
+			}
+			return $data;
+		} else {
+			return FALSE;
+		}
+	}
+
+	public function get_phase_approval()
+	{
+		$this->db->select('*');
+		$this->db->from('phases');
+		$this->db->where('phases.status','Pending');
+		$this->db->join('employees','employees.id = phases.employee');
+		$phase = $this->db->get();
+		if($phase->num_rows() > 0) {
+			$data = array();
+			foreach ($phase->result() as $row) {
+				$data[] = array(
+				'name' => $row->first_name,
+				'phase' => $row->phase,
+				'id' => $row->id
+				);
 			}
 			return $data;
 		} else {

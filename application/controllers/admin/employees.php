@@ -35,11 +35,8 @@ class Employees extends CI_Controller {
 			$extra = '';
 		}
 		//get data
-		$data['employee'] = $this->Employees_model->get_employee_data($where,$deactivated,$extra);
-		foreach ($data['employee'] as $employee) {
-			$employee['position'] = handle_position($employee['position']);
-			$employee['phone'] = handle_phone($employee['phone']);
-		}
+		$data['employees'] = $this->Employees_model->get_employee_data($where,$deactivated,$extra);
+		
 		//send to view
 		$data['content'] = 'employees/employees_view';
 		$data['title'] = 'Employees -- Behavior Solutions Admin';
@@ -70,13 +67,13 @@ class Employees extends CI_Controller {
 
 	public function email()
 	{
+		$employee	= $this->Employees_model->get_employee_data('id',FALSE,$this->uri->segment(3));
 		//check for submission
-		if($_POST['submitted']) {
+		if(isset($_POST['submitted'])) {
 		//if submitted
 			$from		= $this->session->userdata('email');
 			$name		= $this->session->userdata('first_name') .' '.$this->session->userdata('last_name');
-			$employee	= $this->Employees_model->get_employee_data('id',FALSE,$this->uri->segment(3));
-			$to			= $employee['email'];
+			$to			= $employee[0]['email'];
 			$subject	= $this->input->post('subject');
 			$message	= $this->input->post('message');
 
@@ -90,10 +87,11 @@ class Employees extends CI_Controller {
 
 			//add message
 			//redirect back to employee page
-			$url = base_url().'profile/'.$this->uri->segment(3);
+			$url = base_url().'employees';
 			redirect($url);
 		} else {
 		//if not, send to view
+			$data['email'] = $employee[0]['email'];
 			$data['content'] = 'employees/email_view';
 			$data['title'] = 'Employees -- Behavior Solutions Admin';
 			$this->load->view('template', $data);
@@ -102,11 +100,21 @@ class Employees extends CI_Controller {
 
 	public function add()
 	{
-		//check for submission
-		if($_POST('submitted')) {
+		
+		$this->load->library('form_validation');
+		
+		$this->form_validation->set_rules('first_name', 'First Name', 'trim|required');
+		$this->form_validation->set_rules('last_name', 'Last Name', 'trim|required');
+		$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|is_unique[employees.email]');
+		$this->form_validation->set_rules('phone', 'Phone Number', 'required|numeric|exact_length[10]');
+		$this->form_validation->set_rules('hire_date', 'Hire Date', 'required|numeric|exact_length[8]');
+		$this->form_validation->set_rules('position', 'position', 'required');
+		$this->form_validation->set_error_delimiters('<div class="alert alert-error">', '</div>');
+		if ($this->form_validation->run() == TRUE){
+		
 		//if submited
 			//format data
-			$data[] = array(
+			$data = array(
 				'first_name'	=> $this->input->post('first_name'),
 				'last_name'		=> $this->input->post('last_name'),
 				'email'			=> $this->input->post('email'),
@@ -120,7 +128,15 @@ class Employees extends CI_Controller {
 			//redirect to employees page
 			redirect('employees');
 		} else {
-		//if not send to view
+		//if not submitted, send to view
+			$data = array(
+				'first_name'	=> '',
+				'last_name'		=> '',
+				'email'			=> '',
+				'phone'			=> '',
+				'position'		=> '',
+				'hire_date'		=> ''
+			);
 			$data['content'] = 'employees/update_view';
 			$data['title'] = 'Employees -- Behavior Solutions Admin';
 			$this->load->view('template', $data);
@@ -129,8 +145,9 @@ class Employees extends CI_Controller {
 	
 	public function update()
 	{
+		$this->load->library('form_validation');
 		//check for submission
-		if($_POST('submitted')) {
+		if($_POST['submitted']) {
 		//if submited
 			//format data
 			$data[] = array(
@@ -162,10 +179,9 @@ class Employees extends CI_Controller {
 		//get id from uri
 		$id = $this->uri->segment(3);
 		//call model
-		$this->Employee_model->change_status($id);
-		//redirect to employee page
-		$url = base_url().'profile/'.$this->uri->segment(3);
-		redirect($url);
+		$this->Employees_model->change_status($id);
+		//redirect to employees page
+		redirect('employees');
 	}
 }
 

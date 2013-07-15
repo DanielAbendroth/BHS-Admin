@@ -14,15 +14,15 @@ class Employees_model extends CI_Model {
 		//set where
 		switch ($where) {
 			case 'consultant':
-				$this->db->where('postion >', 3);
+				$this->db->where('position >', 3);
 				break;
 			
 			case 'assistant':
-				$this->db->where("postion = 1 OR position = 3");
+				$this->db->where("position = 1 OR position = 3");
 				break;
 			
 			case 'office':
-				$this->db->where("postion = 2 OR position = 3 OR position = 9");
+				$this->db->where("position = 2 OR position = 3 OR position = 9");
 				break;
 					
 			case 'phase':
@@ -39,15 +39,17 @@ class Employees_model extends CI_Model {
 				break;
 				
 			case 'id':
-				$this->db->where('id', $this->encrypt->decode($extra));
+				$this->db->where('id', base64_decode($extra));
 				break;
 		}
 		//prevent admin from ever being returned
-		$this->db->where('position !=', 8);
-		
+		$this->db->where('id !=', 1);
+		$this->db->order_by('position','desc');
 		//determine if need to retrieve unactive employees
 		if(!$deactivated) {
 			$this->db->where('status !=', 0);
+		} else {
+			$this->db->where('status !=', 1);
 		}
 		//retrieve data
 		$query = $this->db->get('employees');
@@ -72,17 +74,18 @@ class Employees_model extends CI_Model {
 	 * This function changes the status of the employee between active and deactive.
 	 */
 	{
-		$id = $this->encrypt->decode($id);
+		$id = base64_decode($id);
 		$this->db->select('status');
 		$this->db->where('id',$id);
 		$query = $this->db->get('employees');
-		foreach ($query->result as $row) {
+		foreach ($query->result() as $row) {
 			if($row->status == 0) {
-				$data = array('stauts' => 1);
+				$data = array('status' => 1);
 			} else {
-				$data = array('stauts' => 0);
+				$data = array('status' => 0);
 			}
 		}
+		$this->db->where('id',$id);
 		$this->db->update('employees',$data);
 	}
 	

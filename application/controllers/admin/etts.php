@@ -111,6 +111,7 @@ class Etts extends CI_Controller {
 					$data['sections'] = $this->Phase_model->get_sections_employee(1,$employee);
 					if($data['hippaa_file'] == '') {
 						if(!$sbc) {
+							$data['hippaa_date'] = '<p>Allowed file types: pdf, doc, docx, jpeg, ppt, pptx, xls, xlsx</p><p>Max file size: 2mb';
 							$data['hippaa_link'] ='</a><form action ="'.base_url().'admin/etts/do_upload" method = "post" id="hippaa_form" enctype="multipart/form-data">';
 							$data['hippaa_link'] .= form_upload('userfile');
 							$data['hippaa_link'] .= form_hidden('hippaa_file', TRUE);
@@ -322,7 +323,7 @@ class Etts extends CI_Controller {
 			if(!empty($_FILES)) {
 				foreach ($_FILES as $key => $file) {
 					$config['file_name'] = $_POST[$key];
-					$config['allowed_types'] = 'pdf|doc|docx';
+					$config['allowed_types'] = 'pdf|doc|docx|jpg|ppt|pptx|xls|xlsx';
 					$config['upload_path'] = './assets/etts/phases';
 					$this->load->library('upload',$config);
 					$this->upload->initialize($config);
@@ -472,6 +473,21 @@ class Etts extends CI_Controller {
 			$this->load->view('template',$data);
 		}//end if posted
 	}
+
+	public function delete_task()
+	{
+		if(isset($_POST['submitted'])) {
+			//delete task
+			$task = $this->uri->segment(5);
+			$this->db->delete('tasks', array('id' => $task)); 
+			redirect(base_url().'etts/phase/'.$this->uri->segment(4));
+		} else {
+			//show confirmation
+			$data['title'] = 'Delete Task';
+			$data['content'] = 'etts/forms/delete_task';
+			$this->load->view('template',$data);			
+		}
+	}
 	
 	public function structure()
 	{
@@ -586,7 +602,7 @@ class Etts extends CI_Controller {
 			}
 			if($i > 0) {
 				//check if dr. peeler approved
-				if($this->session->userdata('position') != 7) {
+				if($this->session->userdata('position') != 8) {
 					//email dr. peeler and update approval record
 					$this->load->library('email');
 					$message = $employee_name .' has added a task that requires your attention for approval. Please log into '.base_url().' and check your "Current Action Items" to approve or reject it.';
@@ -596,7 +612,7 @@ class Etts extends CI_Controller {
 					$this->email->message($message);
 					$this->email->send();
 					
-					$update = array('approval_needed' => 7);
+					$update = array('approval_needed' => 8);
 					$this->db->where('id', $id);
 					$this->db->update('approval',$update);
 					//update task data
@@ -680,7 +696,7 @@ class Etts extends CI_Controller {
 		}
 		if(isset($_POST['submitted'])) {
 			//determine who is rejecting
-			if($this->session->userdata('position') == 5) {
+			if($this->session->userdata('position') == 6) {
 				//delete approval record
 				$this->db->delete('approval',array('id' => $id));
 				//update task data
@@ -761,12 +777,12 @@ class Etts extends CI_Controller {
 		$this->email->subject('Phase Completion');
 		$this->email->message($message);
 		
-		//$this->email->send();
+		$this->email->send();
 		//send email to consultants and dr. peeler
 		if($phase < 3) {
 			$consultant_message .= ' Reply to this email to contact him/her or got to behsolutions.com/admin.';
-			$this->db->where('position >', 4);
-			$this->db->where('position !=', 8);
+			$this->db->where('position >', 3);
+			$this->db->where('position !=', 9);
 			$this->db->select('email');
 			$query = $this->db->get('employees');
 			foreach ($query->result() as $row) {
@@ -781,7 +797,7 @@ class Etts extends CI_Controller {
 			$this->email->subject('Phase Completion');
 			$this->email->message($consultant_message);
 			
-			//$this->email->send();
+			$this->email->send();
 		} else {
 			$message = $employee_name .' has completed phase '.$phase.'. Reply to this email to contact him/her.';
 			$this->email->from('webmail@behsolutions.com', 'Behavior Solutions Admin');
@@ -790,7 +806,7 @@ class Etts extends CI_Controller {
 			$this->email->subject('Phase Completion');
 			$this->email->message($message);
 			
-			//$this->email->send();
+			$this->email->send();
 		}
 		redirect(base_url().'etts');
 	}
@@ -887,6 +903,24 @@ class Etts extends CI_Controller {
 		
 		redirect($redirect);
 	}
+
+	public function exemption()
+	{
+		if($this->uri->segment(3) == 'add') {
+			$data = array(
+				'task' => $this->uri->segment(4),
+				'employee' => $this->uri->segment(5),
+				'phase' => $this->uri->segment(6)
+			);
+			$this->db->insert('exemption', $data);
+			redirect(base_url().'etts/phase/'.$this->uri->segment(6).'/'.$this->uri->segment(5));
+		} else {
+			$this->db->where('task',$this->uri->segment(4));
+			$this->db->where('employee',$this->uri->segment(5));
+			$this->db->delete('exemption');
+			redirect(base_url().'etts/phase/'.$this->uri->segment(6).'/'.$this->uri->segment(5));
+		}
+	}
 	
 	private function __process_section($section_id, $purpose)
 	{
@@ -964,8 +998,8 @@ class Etts extends CI_Controller {
 			$redirect = '/etts/phase/1';
 		}
 		$config['file_name'] = $this->session->userdata('id');
-		$config['allowed_types'] = 'pdf|doc|docx';
-		$config['max_size']	= '100';
+		$config['allowed_types'] = 'pdf|doc|docx|jpg|ppt|pptx|xls|xlsx';
+		$config['max_size']	= '2048';
 		$this->load->library('upload',$config);
 		$this->upload->initialize($config);
 

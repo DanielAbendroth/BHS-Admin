@@ -80,7 +80,7 @@ $autoload['helper'] = array('url','my_bhs');
 |
 */
 
-$autoload['config'] = array();
+$autoload['config'] = array('settings');
 
 
 /*

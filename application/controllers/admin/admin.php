@@ -14,14 +14,14 @@ class Admin extends CI_Controller {
 	public function index()
 	{
 		switch ($this->session->userdata('position')) {
-			case '8'://admin
+			case '9'://admin
 				
 				break;
 			
-			case '2'://sbc
-			case '3'://sbc
-			case '9'://sbc	
-			case '6'://vp
+			case '2'://office aid
+			case '3'://asst./office aid
+			case '9'://admin
+			case '7'://vp
 				$this->load->model('Phase_1_model');
 				
 				$background= $this->Phase_1_model->get_no_background();
@@ -61,19 +61,28 @@ class Admin extends CI_Controller {
 					endforeach;
 				}				
 				
+				$approval_phases = $this->Phase_model->get_phase_approval();
 			
 				break;
 				
-			case '5'://sbc
+			case '6'://sbc
 				$this->load->model('Phase_model');
-				$approval_tasks = $this->Phase_model->get_tasks_approval(5);
+				$approval_tasks = $this->Phase_model->get_tasks_approval(6);
 				if (is_array($approval_tasks)) {
 					
 					foreach ($approval_tasks as $id => $name):
 						$data['action_items'][] = '<a href="'.base_url().'etts/approval/'.$id.'">'.$name.'</a> has a task that requires approval.';
 					endforeach;
 				}
+				
+				$approval_phases = $this->Phase_model->get_phase_approval();
+				if(is_array($approval_phases)) {
+					foreach ($approval_phases as $item) {
+						$data['action_items'][] = '<a href="'.base_url().'etts/phase/'.$item['phase'].'/'.$item['id'].'">'.$item['name'].'</a> has a phase that requires approval.';
+					}
+				}
 				break;
+				
 			
 			default:
 				
@@ -85,7 +94,6 @@ class Admin extends CI_Controller {
 		
 		$this->load->view('template', $data);
 	}
-
 	
 	public function employees()
 	{

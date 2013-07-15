@@ -27,16 +27,28 @@
 			<div class="box-header well" data-original-title>
 				<h2>
 					<?=$section['title']?>
-					<?if(isset($section['data'])):?>
-						<?if(count($section['data']) >= $section['minimum']):?>
-							<span class="label label-success">Complete</span>
+					<?if(is_exempt($section['id'],$this->session->userdata('id'))): ?>
+						<span class="label label-success">Exempt</span>
+					<?else:?>
+						<?if(isset($section['data'])):?>
+							<?if(count($section['data']) >= $section['minimum']):?>
+								<span class="label label-success">Complete</span>
+							<?else:?>
+								<span class="label label">Incomplete</span>
+							<?endif?>
 						<?else:?>
 							<span class="label label">Incomplete</span>
 						<?endif?>
-					<?else:?>
-						<span class="label label">Incomplete</span>
 					<?endif?>
-					
+						
+					<?if($this->session->userdata('position') > 5){?>
+						<?if(is_exempt($section['id'],$this->uri->segment(4))) { ?>
+							<span class="label label">Exempt</span>
+							<a href="<?=base_url()?>etts/exemption/remove/<?=$section['id']?>/<?=$this->uri->segment(4)?>/<?=$this->uri->segment(3)?>">unexempt</a>
+						<?} else {?>
+							<a href="<?=base_url()?>etts/exemption/add/<?=$section['id']?>/<?=$this->uri->segment(4)?>/<?=$this->uri->segment(3)?>">exempt</a> 
+						<?}?>
+					<?}?>
 				</h2>
 			</div>
 			<div class="box-content">
@@ -65,7 +77,7 @@
 									<?foreach ($task as $value):
 										$list = explode('.', $value);
 										if(isset($list[1])) {
-											if(($list[1] == 'doc') | ($list[1] == 'pdf') | ($list[1] == 'docx')) {
+											if(($list[1] == 'doc') | ($list[1] == 'pdf') | ($list[1] == 'docx') | ($list[1] == 'jpg') | ($list[1] == 'ppt') | ($list[1] == 'pptx') | ($list[1] == 'xls') | ($list[1] == 'xlsx')) {
 												$value = '<a href="'.base_url().'admin/etts/download_file/phases/'.$value.'/'.$this->uri->segment(3).'">Download File</a>';
 											}
 										}
@@ -79,7 +91,9 @@
 										<?else :?>
 											<td class="center"><?=$value?></td>
 										<?endif?>
-									<?endforeach?>                                  
+										
+									<?endforeach?>
+									<td><a href="<?=base_url()?>etts/delete/task/<?=$this->uri->segment(3)?>/<?=$id?>">delete</a></td>
 								</tr>
 								<?$i++?>
 							<?endforeach?>
@@ -87,7 +101,9 @@
 					<?endif?>
 					<tr>
 						<?if(!$sbc):?>
-						<td class="center" colspan="20"><a href="<?=base_url()?>etts/add/task/<?=$this->uri->segment(3)?>/<?=$section['id']?>" class="btn btn-primary">Add</a></td>
+							<?if(!is_exempt($section['id'],$this->session->userdata('id'))): ?>
+								<td class="center" colspan="20"><a href="<?=base_url()?>etts/add/task/<?=$this->uri->segment(3)?>/<?=$section['id']?>" class="btn btn-primary">Add</a></td>
+							<?endif?>
 						<?endif?>
 					</tr>
 				</table>

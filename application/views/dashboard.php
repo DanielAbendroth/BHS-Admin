@@ -1,17 +1,17 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed'); ?>
 	<?
 		switch ($this->session->userdata('position')) {
-			case '8'://admin
+			case '9'://admin
 				
 				break;
 				
-			case '6'://vp
+			case '7'://vp
 				include 'dashboard/announcement.php';
 				include 'dashboard/create_announcement.php';
 				include 'dashboard/action_items.php';
 				break;
 				
-			case '7'://pres ?>
+			case '8'://pres ?>
 				<!--<div class="sortable row-fluid">
 					<a data-rel="tooltip" title="6 new employees" class="well span3 top-block" href="#">
 						<span class="icon32 icon-red icon-user"></span>
@@ -50,7 +50,7 @@
 				include 'dashboard/action_items.php';
 				break;
 				
-			case '5'://sbc
+			case '6'://sbc
 				include 'dashboard/announcement.php';
 				include 'dashboard/create_announcement.php';
 				include 'dashboard/action_items.php';
@@ -58,7 +58,7 @@
 			
 			case '2':
 			case '3':
-			case '9'://sbc
+			case '5'://sbc
 				include 'dashboard/announcement.php';
 				include 'dashboard/action_items.php';
 				break;

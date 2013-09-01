@@ -75,6 +75,11 @@ class Sections_model extends CI_Model {
 		$this->db->update('sections',$data);
 	}
 
+	public function get_section($section)
+	{
+		$this->db->where('id',$section);
+		return $this->db->get('sections');
+	}
 }
 
 /* End of file sections_model.php */

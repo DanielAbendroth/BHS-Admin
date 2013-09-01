@@ -94,6 +94,7 @@
 							<div class="clearfix"></div>
 
 							<p class="center span5">
+							<input type="hidden" name="submitted" value="TRUE" />
 							<button type="submit" class="btn btn-primary">Login</button>
 							</p>
 						</fieldset>

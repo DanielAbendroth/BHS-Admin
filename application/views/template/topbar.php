@@ -18,7 +18,7 @@
 						<span class="caret"></span>
 					</a>
 					<ul class="dropdown-menu">
-						<li><a href="<?=site_url();?>profile">Profile</a></li>
+						<li><a href="<?=site_url();?>employees/profile">Profile</a></li>
 						<li class="divider"></li>
 						<li><a href="<?=site_url();?>logout">Logout</a></li>
 					</ul>

@@ -20,6 +20,7 @@ class Admin extends CI_Controller {
 			
 			case '2'://office aid
 			case '3'://asst./office aid
+			case '5'://consult/office aid
 			case '9'://admin
 			case '7'://vp
 				$this->load->model('Phase_1_model');
@@ -115,4 +116,4 @@ class Admin extends CI_Controller {
 }
 
 /* End of file dashboard.php */
-/* Location: ./application/controllers/dashboard.php */
+/* Location: ./application/controllers/admin/admin.php */

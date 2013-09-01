@@ -27,7 +27,6 @@
 						<?endif?>
 					</div>
 				</div><!--/span-->
-			</div><!--/row-->
 
     
 <?

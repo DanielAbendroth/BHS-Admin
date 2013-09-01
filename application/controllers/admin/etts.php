@@ -123,9 +123,8 @@ class Etts extends CI_Controller {
 					} else {
 						$data['hippaa_link'] = 'Download File';
 					}
-					
 					if($sbc) {
-						if($data['phase1']['top_status'] == '<div class="yellow">Approval Pending</div>') {
+						if($data['phase1']['top_status'] == '<div class="yellow">Pending Approval</div>') {
 							$data['phase1']['top_status'] = '
 								<a href="'.base_url().'etts/phase_approval/1/'.$employee.'" class="btn btn-primary">Approve</a>
 								<a href="'.base_url().'etts/phase_rejection/1/'.$employee.'" class="btn">Reject</a>
@@ -186,39 +185,77 @@ class Etts extends CI_Controller {
 		$this->form_validation->set_rules('title', 'Title', 'required');
 		$this->form_validation->set_rules('minimum', 'Minimum tasks', 'required|numeric');
 
-		if ($this->form_validation->run() == FALSE) {
-			$data = array(
-				'title' => 'Create a new section',
-				'content' => 'etts/forms/create_section'
-			);
-			$data['section'] = array(
-				'title'		=> '',
-				'phase'		=> '',
-				'note'		=> '',
-				'minimum'	=> ''
-			);
-			$this->load->helper('form');
-			$this->load->view('template', $data);
-		} else {
-			//process data
-			$section = array(
-				'title'		=> $this->input->post('title'),
-				'phase'		=> $this->input->post('phase'),
-				'note'		=> $this->input->post('info'),
-				'minimum'	=> $this->input->post('minimum')
-			);
-			//load modal
-			$result = $this->Sections_model->create_section($section);
-			$id = $this->db->insert_id();
-			if(empty($result)) {
-				$this->session->set_flashdata('error','The section could not be added. Please try again.');
+		if($this->uri->segment(2) == 'edit'){	
+			if ($this->form_validation->run() == FALSE) {
+			
+				$data = array(
+					'title' => 'Update section',
+					'content' => 'etts/forms/create_section'
+				);
+				$section = $this->Sections_model->get_section($this->uri->segment(5));
+				foreach ($section->result() as $row) {
+
+					$data['section'] = array(
+						'title'		=> $row->title,
+						'note'		=> $row->note,
+						'minimum'	=> $row->minimum
+					);
+					
+				}
+				
 			} else {
-				$this->session->set_flashdata('success', 'The section was successfully added.');
+				
+				//update edit
+				$data = array(
+					'title'		=> $this->input->post('title'),
+					'note'		=> $this->input->post('info'),
+					'minimum'	=> $this->input->post('minimum')
+				);
+				$this->db->where('id', $this->uri->segment(5));
+				$this->db->update('sections', $data); 
+				redirect('etts/phase/structure/'.$this->uri->segment(4));
 			}
 			
-			//change to add fields!!!!!!!
-			redirect('etts/add/field/'.$section['phase'].'/'.$id);			
+			
+				
+		} else {
+			
+			if ($this->form_validation->run() == FALSE) {
+				
+				$data = array(
+					'title' => 'Create a new section',
+					'content' => 'etts/forms/create_section'
+				);
+				$data['section'] = array(
+					'title'		=> '',
+					'phase'		=> '',
+					'note'		=> '',
+					'minimum'	=> ''
+				);
+				
+			} else {
+				//process data
+				$section = array(
+					'title'		=> $this->input->post('title'),
+					'phase'		=> $this->input->post('phase'),
+					'note'		=> $this->input->post('info'),
+					'minimum'	=> $this->input->post('minimum')
+				);
+				//load modal
+				$result = $this->Sections_model->create_section($section);
+				$id = $this->db->insert_id();
+				if(empty($result)) {
+					$this->session->set_flashdata('error','The section could not be added. Please try again.');
+				} else {
+					$this->session->set_flashdata('success', 'The section was successfully added.');
+				}
+				
+				//change to add fields!!!!!!!
+				redirect('etts/add/field/'.$section['phase'].'/'.$id);	
+			}		
 		}
+		$this->load->helper('form');
+			$this->load->view('template', $data);
 	}
 	
 	public function add_field()

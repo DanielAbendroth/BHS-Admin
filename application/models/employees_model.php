@@ -41,9 +41,13 @@ class Employees_model extends CI_Model {
 			case 'id':
 				$this->db->where('id', base64_decode($extra));
 				break;
+			
+			case 'email':
+				$this->db->where('email', $extra);
+				break;
 		}
 		//prevent admin from ever being returned
-		$this->db->where('id !=', 1);
+		$this->db->where('id !=', 2);
 		$this->db->order_by('position','desc');
 		//determine if need to retrieve unactive employees
 		if(!$deactivated) {
@@ -56,6 +60,7 @@ class Employees_model extends CI_Model {
 		foreach ($query->result() as $row) {
 			$data[] = array(
 				'id'			=> $row->id,
+				'image'			=> $row->image,
 				'last_login'	=> $row->last_login,
 				'first_name'	=> $row->first_name,
 				'last_name'		=> $row->last_name,
@@ -65,6 +70,9 @@ class Employees_model extends CI_Model {
 				'hire_date'		=> $row->hire_date,
 				'status'		=> $row->status
 			);
+		}
+		if($data[0]['image'] == '') {
+			$data[0]['image'] = 'stock image';
 		}
 		return $data;
 	}

@@ -6,9 +6,9 @@
 				break;
 				
 			case '7'://vp
+				include 'dashboard/action_items.php';
 				include 'dashboard/announcement.php';
 				include 'dashboard/create_announcement.php';
-				include 'dashboard/action_items.php';
 				break;
 				
 			case '8'://pres ?>
@@ -45,24 +45,37 @@
 				
 				
 			<?
+				include 'dashboard/action_items.php';
 				include 'dashboard/announcement.php';
 				include 'dashboard/create_announcement.php';
-				include 'dashboard/action_items.php';
 				break;
 				
 			case '6'://sbc
+				include 'dashboard/action_items.php';
 				include 'dashboard/announcement.php';
 				include 'dashboard/create_announcement.php';
-				include 'dashboard/action_items.php';
+				
 				break;
 			
+			case '1':
+			case '4':
+				include 'dashboard/announcement.php';
+				
+				break;
 			case '2':
 			case '3':
-			case '5'://sbc
-				include 'dashboard/announcement.php';
+			case '5'://cons/office aid
 				include 'dashboard/action_items.php';
+				include 'dashboard/announcement.php';
+				
 				break;
 			
+			case '0':
+				include 'dashboard/action_items.php';
+				include 'dashboard/announcement.php';
+				include 'dashboard/create_announcement.php';
+				
+				break;
 			default:
 				echo '<p>Currently under construction. Please continue to ETTS.</p>';
 				break;

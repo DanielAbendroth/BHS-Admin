@@ -29,8 +29,9 @@
 						<div class="box-header well" data-original-title="">
 							<h2><?=$section['title']?></h2>
 							<div class="box-icon">
-								<a href="<?=base_url()?>etts/add/field/<?=$phase?>/<?=$section['id']?>" title="Add Field" data-rel="tooltip"><i class="icon32 icon-plus"></i></a>
-								<a href="<?=base_url()?>etts/delete/section/<?=$section['id']?>" style="margin:0 10px 0 25px;" title="Delete Section" data-rel="tooltip"><i class="icon32 icon-close"></i></a>
+								<a href="<?=base_url()?>etts/edit/section/<?=$phase?>/<?=$section['id']?>" title="Edit Section" data-rel="tooltip"><i class="icon32 icon-edit"></i></a>
+								<a href="<?=base_url()?>etts/add/field/<?=$phase?>/<?=$section['id']?>" style="margin:0 10px 0 25px;" title="Add Field" data-rel="tooltip"><i class="icon32 icon-plus"></i></a>
+								<a href="<?=base_url()?>etts/delete/section/<?=$section['id']?>" style="margin:0 10px 0 15px;" title="Delete Section" data-rel="tooltip"><i class="icon32 icon-close"></i></a>
 							</div>
 						</div>
 						

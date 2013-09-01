@@ -114,7 +114,7 @@ if ( ! function_exists('handle_position')) {
 	{
 		switch ($position) {
 			case '0':
-				$position = 'Web Developer';
+				$position = 'Website Developer';
 				break;
 				
 			case '1':
@@ -157,7 +157,7 @@ if ( ! function_exists('handle_position')) {
 if ( ! function_exists('handle_phone')) {
 	function handle_phone($phone)
 	{
-		$phone = '('.substr($phone,0,3).') '.substr($phone,2,3).'-'.substr($phone,5,4);
+		$phone = '('.substr($phone,0,3).') '.substr($phone,3,3).'-'.substr($phone,6,4);
 		return $phone;
 	}
 }
@@ -171,6 +171,17 @@ if ( ! function_exists('handle_status')) {
 			$status = 'Non-Active';
 		}
 		return $status;
+	}
+}
+
+if ( ! function_exists('handle_date')) {
+	function handle_date($date)
+	{
+		$year = substr($date,4,4);
+		$month = substr($date,0,2);
+		$day = substr($date,2,2);
+		$date = $month.'/'.$day.'/'.$year;
+		return $date;
 	}
 }
 

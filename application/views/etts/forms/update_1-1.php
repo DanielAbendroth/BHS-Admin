@@ -11,6 +11,7 @@
 							  <label class="control-label" for="date">Date</label>
 							  <div class="controls">
 								<input type="text" class="input-xlarge datepicker" id="date" name="date">
+								<p>i.e. 01/01/2013</p>
 							  </div>
 							</div>
 

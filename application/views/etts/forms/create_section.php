@@ -3,12 +3,21 @@
 	<div class="row-fluid sortable">
 		<div class="box span12">
 			<div class="box-header well" data-original-title>
+				<?if($this->uri->segment(2) !== 'edit'):?>
 				<h2>Add Section</h2>
+				<?else:?>
+				<h2>Update Section</h2>
+				<?endif?>
 			</div>
 			<div class="box-content">
 				
-				<?=validation_errors(); ?>
+			<?=validation_errors(); ?>
+			<?if($this->uri->segment(2) !== 'edit'):?>
 				<form class="form-horizontal" action="<?=base_url()?>etts/create/section/1" method="post">
+			<?else:?>
+				<form class="form-horizontal" action="<?=base_url()?>etts/edit/section/<?=$this->uri->segment(4)?>/<?=$this->uri->segment(5)?>" method="post">
+			<?endif?>
+			
 				  <fieldset>
 				  	<input type="hidden" name="phase" value="<?=$this->uri->segment(4)?>" />
 					<div class="control-group">
@@ -30,7 +39,7 @@
 						</div>
 					</div>
 					<div class="form-actions">
-					  <button type="submit" class="btn btn-primary">Create Section</button>
+					  <button type="submit" class="btn btn-primary">Save</button>
 					  <a href="<?=base_url()?>etts/phase/structure/<?=$this->uri->segment(4)?>" class="btn">Cancel</a>
 					</div>
 				  </fieldset>

@@ -28,22 +28,25 @@
 					<h2><i class="icon-user"></i> <?=$employee['first_name'].' '.$employee['last_name']?></h2>
 					<div class="box-icon">
 						<?if(($this->session->userdata('position') == 3) | ($this->session->userdata('position') == 5) | ($this->session->userdata('position') > 6) | ($this->session->userdata('position') == 2)):?>
-							<a href="#" class="btn btn-minimize btn-round"><i class="icon-edit"></i></a>
+							<a href="<?=base_url()?>employees/update/<?=base64_encode($employee['id'])?>" class="btn btn-minimize btn-round"><i class="icon-edit"></i></a>
 							<a href="<?=base_url()?>employees/change_status/<?=base64_encode($employee['id'])?>" title="Change Status" class="btn btn-close btn-round"><i class="icon-trash"></i></a>
 						<?endif?>
 					</div>
 				</div>
 				<div class="box-content">
-					<div class="row-fluid sortable ui-sortable">
-						<div class="span4 left"><img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSdw52TM8VpD_97upqDBAaqynK3iqcEZqZPJwB9KoTc6ljrSPPp"></div>
-						<div class="span6"><h5> <i class="icon icon-color icon-user"></i> <?=handle_position($employee['position'])?></h5></div>
-						<div class="span6"><h6><a href="<?=base_url()?>employees/email/<?=base64_encode($employee['id'])?>"> <i class="icon icon-color icon-mail-closed"></i> <?=$employee['email']?></a></h6></div>
-						<div class="span6"><h6><i class="icon icon-color icon-contacts"></i> <?=handle_phone($employee['phone'])?></h6></div>
-						<div class="span6"></div>
+					<div class="row-fluid sortable ui-sortable" style="float: left">
+						<div class="span4" style="margin-bottom: 10px">
+							<img src="<?=base_url()?>assets/pictures/<?=$employee['image']?>" style="float:left; margin-right:25px;">
+						</div>
+						<div class="span6">
+							<h5> <i class="icon icon-color icon-user"></i> <?=handle_position($employee['position'])?></h5>
+							<h6><a href="<?=base_url()?>employees/email/<?=base64_encode($employee['id'])?>"> <i class="icon icon-color icon-mail-closed"></i> <?=$employee['email']?></a></h6>
+							<h6><i class="icon icon-color icon-contacts"></i> <?=handle_phone($employee['phone'])?></h6>
+						</div>
 					</div>
 				<?if(($this->session->userdata('position') == 3) | ($this->session->userdata('position') == 5) | ($this->session->userdata('position') > 6) | ($this->session->userdata('position') == 0)):?>
 					<div class="row-fluid sortable ui-sortable">
-						<div class="span4"><h6>Hire Date:</h6> <?=$employee['hire_date']?></div>
+						<div class="span4"><h6>Hire Date:</h6> <?=handle_date($employee['hire_date'])?></div>
 						<div class="span4"><h6>Last Login:</h6> <?=$employee['last_login']?></div>
 						<div class="span4"><h6>Status:</h6> <?=handle_status($employee['status'])?></div>
 					</div>

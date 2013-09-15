@@ -13,7 +13,7 @@
 							<?if(!is_array($page)): ?>
 								<span><li class="nav-header hidden-tablet"><?=$page?></li></span>
 							<?else:?>
-								<li><a class="ajax-link" href="<?=$page['uri']?>" <?if($page['title'] == 'File Manager'){echo 'target = _blank';}?>><i class="<?=$page['icon']?>"></i><span class="hidden-tablet"> <?=$page['title']?></span></a></li>
+								<li><a class="ajax-link" href="<?=$page['uri']?>" <?if($page['title'] == 'Restricted File Manager'){echo 'target = _blank';}?>><i class="<?=$page['icon']?>"></i><span class="hidden-tablet"> <?=$page['title']?></span></a></li>
 							<?endif?>
 						<?endforeach?>
 					</ul>

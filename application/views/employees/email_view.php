@@ -1,6 +1,7 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');?>
 	
-	<form class="form-horizontal" method="post" action="<?=base_url().'employees/email'?>">
+	<p>The email function is currently not working. We are working on a fix and hope to have it up soon.</p>
+	<!--<form class="form-horizontal" method="post" action="<?=base_url().'employees/email'?>">
 			
 		<div class="control-group">
 			<label class="control-label">Send to</label>
@@ -28,7 +29,7 @@
 		<div class="form-actions">
 			<button type="submit" class="btn btn-primary">Send</button>
 		</div>
-	</form>
+	</form>-->
 <?
 /* End of file email_view.php */
 /* Location: ./application/views/employees/email_view.php */

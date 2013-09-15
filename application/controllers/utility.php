@@ -4,15 +4,14 @@ class Utility extends CI_Controller {
 	
 	public function index()
 	{
-		$config['image_library'] = 'gd2';
-				$config['source_image'] = 'assets/pictures/default.png';
-				$config['create_thumb'] = FALSE;
-				$config['maintain_ratio'] = TRUE;
-				$config['width'] = 150;
-				$config['height'] = 150;
+		$this->db->select('password','id');
+		$employees = $this->db->get('employees');
 		
-				$this->load->library('image_lib', $config);
-		
-				$this->image_lib->resize();
+		foreach ($employees->result() as $employee) {
+			$data = array('temp_pass' => $employee->password );
+			$this->db->where('id',$employee->id);
+			
+			$this->db->update('employees',$data);
+		}
 	}
 }

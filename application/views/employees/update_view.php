@@ -83,7 +83,7 @@
 				<label class="control-label" for="phone">Change Password</label>
 			<?endif?>
 			<div class="controls">
-				<input class="input-xlarge focused" id="password" name="password" type="text" style="width: 80%" maxlength="10">
+				<input class="input-xlarge focused" id="password" name="password" type="text" style="width: 80%">
 			<?if(!$this->session->userdata('new_hire')):?>
 				<p class="help-block">Leave blank for no change</p>
 			<?endif?>

@@ -47,7 +47,6 @@ class Employees_model extends CI_Model {
 				break;
 		}
 		//prevent admin from ever being returned
-		$this->db->where('id !=', 2);
 		$this->db->order_by('position','desc');
 		//determine if need to retrieve unactive employees
 		if(!$deactivated) {

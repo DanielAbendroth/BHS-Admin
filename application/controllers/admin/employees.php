@@ -37,6 +37,13 @@ class Employees extends CI_Controller {
 		}
 		//get data
 		$data['employees'] = $this->Employees_model->get_employee_data($where,$deactivated,$extra);
+		foreach($data['employees'] as $key => $value) {
+			if($value['id'] == 2) {
+				$k = $key;
+			}
+		}
+		unset($data['employees'][$k]);
+		$data['employees'] = array_values($data['employees']);
 		
 		//send to view
 		$data['content'] = 'employees/employees_view';
@@ -87,11 +94,17 @@ class Employees extends CI_Controller {
 
 			//send
 			$this->load->library('email');
+			$config['send_multipart'] = FALSE;
+			$config['protocol'] = 'smpt';  
+			$this->email->initialize($config);
 			$this->email->from($from, $name);
 			$this->email->to($to);
 			$this->email->subject($subject);
 			$this->email->message($message);
 			$this->email->send();
+			
+			
+			echo $this->email->print_debugger();
 
 			//add message
 			//redirect back to employee page
@@ -123,8 +136,7 @@ class Employees extends CI_Controller {
 		//if submited
 			//format data
 			$temp = uniqid();
-			$salt = 'salty-salty-iamaddingsalt-thisisapparentlysafer';
-			$password = sha1($salt.$temp);
+			$password = sha1($temp.$this->config->item('encryption_key'));
 			$data = array(
 				'temp_pass'		=> $password,
 				'first_name'	=> $this->input->post('first_name'),
@@ -132,8 +144,8 @@ class Employees extends CI_Controller {
 				'email'			=> $this->input->post('email'),
 				'phone'			=> $this->input->post('phone'),
 				'position'		=> $this->input->post('position'),
-				'image'			=> 'default.jpg',
-				'hire_date'		=> $hire_date,
+				'image'			=> 'default.png',
+				'hire_date'		=> $this->input->post('hire_date'),
 				'status'		=> 1
 			);
 

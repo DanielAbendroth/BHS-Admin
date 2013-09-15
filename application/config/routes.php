@@ -46,6 +46,7 @@ $route['employees'] = 'admin/employees';
 $route['employees/profile'] = 'admin/employees/profile';
 $route['employees/profile/(:any)'] = 'admin/employees/profile';
 $route['employees/email/(:any)'] = 'admin/employees/email';
+$route['employees/email'] = 'admin/employees/email';
 $route['employees/add'] = 'admin/employees/add';
 $route['employees/update/(:any)'] = 'admin/employees/update';
 $route['employees/change_status/(:any)'] = 'admin/employees/change_status';

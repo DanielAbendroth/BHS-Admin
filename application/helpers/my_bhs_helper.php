@@ -37,11 +37,11 @@ if ( ! function_exists('nav_generate'))
 			'icon'	=> 'icon-home',
 			'title'	=> 'Dashboard'
 		);
-		/*$pages[] = array(
-			'uri'	=> base_url().'files',
+		$pages[] = array(
+			'uri'	=> '/admin/files',
 			'icon'	=> 'icon-folder-open',
 			'title'	=> 'File Manager'
-		);*/
+		);
 		$pages[] = array(
 			'uri'	=> base_url().'employees',
 			'icon'	=> 'icon-user',
@@ -63,7 +63,7 @@ if ( ! function_exists('nav_generate'))
 			$pages[] = array(
 			'uri'	=> 'http://behsolutions.com/files?session_id='.$session_id,
 			'icon'	=> 'icon-folder-open',
-			'title'	=> 'File Manager'
+			'title'	=> 'Restricted File Manager'
 		);
 		}
 		return $pages;

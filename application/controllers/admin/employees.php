@@ -136,7 +136,9 @@ class Employees extends CI_Controller {
 		//if submited
 			//format data
 			$temp = uniqid();
-			$password = sha1($temp.$this->config->item('encryption_key'));
+			$salt = 'salty-salty-iamaddingsalt-thisisapparentlysafer';
+			//$this->config->item('encryption_key')
+			$password = sha1($temp.$salt);
 			$data = array(
 				'temp_pass'		=> $password,
 				'first_name'	=> $this->input->post('first_name'),

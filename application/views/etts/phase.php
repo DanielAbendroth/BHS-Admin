@@ -75,6 +75,7 @@
 								<tr>
 									<td class="center"><?=$i?></td>
 									<?foreach ($task as $value):
+									$value = strtolower($value);
 										$list = explode('.', $value);
 										if(isset($list[1])) {
 											if(($list[1] == 'doc') | ($list[1] == 'pdf') | ($list[1] == 'docx') | ($list[1] == 'jpg') | ($list[1] == 'ppt') | ($list[1] == 'pptx') | ($list[1] == 'xls') | ($list[1] == 'xlsx')) {

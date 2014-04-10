@@ -357,8 +357,10 @@ class Etts extends CI_Controller {
 		$s = 0;
 		$this->load->library('form_validation');
 		if (isset($_POST['submitted'])) {
-			if(!empty($_FILES)) {
+			if( ! empty($_FILES)) {
 				foreach ($_FILES as $key => $file) {
+					$_FILES[$key]['name'] = strtolower($_FILES[$key]['name']);
+					$list = explode('.', $_FILES[$key]['name']);
 					$config['file_name'] = $_POST[$key];
 					$config['allowed_types'] = 'pdf|doc|docx|jpg|ppt|pptx|xls|xlsx';
 					$config['upload_path'] = './assets/etts/phases';
